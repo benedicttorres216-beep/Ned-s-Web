@@ -1,0 +1,140 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    background:
+        radial-gradient(circle at 50% 20%, #17245c, #050711 55%, #000 100%);
+    color: white;
+    font-family: Arial, sans-serif;
+    touch-action: none;
+}
+
+#gameCanvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.hud {
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 94%;
+    max-width: 500px;
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 18px;
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    z-index: 10;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.hud span {
+    font-size: 17px;
+    font-weight: bold;
+    margin-left: 4px;
+}
+
+.controls {
+    position: fixed;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    z-index: 20;
+}
+
+.controls button {
+    width: 65px;
+    height: 65px;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 50%;
+    background: rgba(255,255,255,.1);
+    color: white;
+    font-size: 24px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+#fireBtn {
+    width: 78px;
+    height: 78px;
+    font-size: 30px;
+    background: rgba(255,70,140,.15);
+}
+
+.controls button:active {
+    transform: scale(.88);
+}
+
+#startScreen,
+#gameOver {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,.35);
+    z-index: 100;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.panel {
+    width: 88%;
+    max-width: 380px;
+    padding: 35px 25px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 28px;
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.ship {
+    font-size: 65px;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 30px;
+    letter-spacing: 2px;
+}
+
+.panel p {
+    margin: 15px 0 25px;
+    opacity: .7;
+}
+
+.panel button {
+    width: 100%;
+    padding: 16px;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 15px;
+    background: linear-gradient(135deg, #426cff, #a53cff);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
