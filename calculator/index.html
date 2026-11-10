@@ -1,21 +1,166 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Glass Calculator</title>
+<title>Yawa nga Calculator</title>
 
-<link rel="stylesheet" href="style.css">
+<style>
+* {
+    box-sizing: border-box;
+}
 
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #0f1115;
+    font-family: Arial, sans-serif;
+    transition: background .3s ease;
+}
+
+.calculator {
+    width: min(350px, 92vw);
+    padding: 22px;
+    border-radius: 30px;
+    background: rgba(30,30,30,.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow: 0 10px 35px rgba(0,0,0,.5);
+}
+
+.theme-btn {
+    width: 55px;
+    height: 55px;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 50%;
+    background: rgba(255,255,255,.08);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: .3s ease;
+}
+
+.theme-btn svg {
+    width: 25px;
+    height: 25px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.theme-btn:active {
+    transform: scale(.9);
+}
+
+.display {
+    height: 95px;
+    margin-bottom: 18px;
+    padding: 20px;
+    border-radius: 20px;
+    background: #1b1f27;
+    color: #fff;
+    font-size: 42px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    overflow: hidden;
+    word-break: break-all;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 12px;
+}
+
+.buttons button {
+    height: 65px;
+    border: none;
+    border-radius: 20px;
+    font-size: 22px;
+    cursor: pointer;
+    color: white;
+    background: #2b313d;
+    transition: .2s;
+}
+
+.buttons button:active {
+    transform: scale(.94);
+}
+
+.operator {
+    background: #2962ff !important;
+}
+
+.clear {
+    background: #e53935 !important;
+}
+
+.zero {
+    grid-column: span 2;
+}
+
+body.light {
+    background: #f2f2f2;
+}
+
+body.light .calculator {
+    background: rgba(255,255,255,.85);
+    border: 1px solid #ddd;
+    box-shadow: 0 10px 35px rgba(0,0,0,.12);
+}
+
+body.light .display {
+    background: #f0f1f5;
+    color: #111;
+}
+
+body.light .buttons button {
+    background: #e5e5e5;
+    color: #111;
+}
+
+body.light .buttons .operator {
+    background: #4f8cff !important;
+    color: #fff;
+}
+
+body.light .buttons .clear {
+    background: #e53935 !important;
+    color: #fff;
+}
+
+body.light .theme-btn {
+    background: #fff;
+    border-color: #ddd;
+    color: #111;
+}
+</style>
 </head>
+
 <body>
 
 <div class="calculator">
-<button id="themeToggle" class="theme-btn" onclick="toggleTheme()">
-    🌙
-</button>
 
-</button>
+    <button id="themeToggle" class="theme-btn"
+        onclick="toggleTheme()" aria-label="Toggle theme">
+
+        <svg id="themeIcon" viewBox="0 0 24 24">
+            <path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/>
+        </svg>
+
+    </button>
+
     <div id="display" class="display">0</div>
 
     <div class="buttons">
@@ -44,175 +189,46 @@
         <button onclick="append('.')">.</button>
 
     </div>
-
 </div>
 
-<script src="script.js"></script>
-
-</body>
-</html>
-<style>
-body{
-    margin:0;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    background:#0f1115;
-    font-family:Arial,sans-serif;
-}
-
-.calculator{
-    width:350px;
-    padding:22px;
-    border-radius:30px;
-    background:rgba(30,30,30,.85);
-    backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,.08);
-    box-shadow:0 10px 35px rgba(0,0,0,.5);
-}
-
-.display{
-    height:95px;
-    margin-bottom:18px;
-    padding:20px;
-    border-radius:20px;
-    background:#1b1f27;
-    color:#ffffff;
-    font-size:48px;
-    display:flex;
-    justify-content:flex-end;
-    align-items:flex-end;
-    overflow:hidden;
-}
-
-.buttons{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-}
-
-button{
-    height:70px;
-    border:none;
-    border-radius:20px;
-    font-size:22px;
-    cursor:pointer;
-    color:white;
-    background:#2b313d;
-    transition:.2s;
-}
-
-button:hover{
-    background:#384150;
-}
-
-button:active{
-    transform:scale(.95);
-}
-
-.operator{
-    background:#2962ff;
-}
-
-.equal{
-    background:#00c853;
-}
-
-.clear{
-    background:#e53935;
-}
-
-.zero{
-    grid-column:span 2;
-}
-
-/* Light Mode */
-body.light{
-    background:#f2f2f2;
-}
-
-body.light .calculator{
-    background:#ffffff;
-    border:1px solid #ddd;
-}
-
-body.light .display{
-    background:#f8f8f8;
-    color:#111;
-}
-
-body.light button{
-    background:#e5e5e5;
-    color:#111;
-}
-
-body.light .operator{
-    background:#4f8cff;
-    color:#fff;
-}
-
-body.light .equal{
-    background:#00c853;
-    color:#fff;
-}
-
-body.light .clear{
-    background:#e53935;
-    color:#fff;
-}
-
-.theme-btn{
-    width:60px;
-    height:60px;
-    border:none;
-    border-radius:50%;
-    background:rgba(255,255,255,.08);
-    backdrop-filter:blur(20px);
-    color:#fff;
-    font-size:28px;
-    cursor:pointer;
-    margin-bottom:20px;
-    transition:.3s ease;
-    box-shadow:0 8px 20px rgba(0,0,0,.35);
-}
-
-.theme-btn:hover{
-    transform:scale(1.08);
-}
-
-.theme-btn:active{
-    transform:scale(.92);
-}
-
-body.light .theme-btn{
-    background:#ffffff;
-    color:#111;
-}
-</style>
 <script>
 const display = document.getElementById("display");
+
 let expression = "";
 
-// Add number/operator
+const moonIcon = `
+<svg viewBox="0 0 24 24">
+    <path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/>
+</svg>`;
+
+const sunIcon = `
+<svg viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="4"/>
+    <path d="M12 2v2"/>
+    <path d="M12 20v2"/>
+    <path d="m4.93 4.93 1.42 1.42"/>
+    <path d="m17.65 17.65 1.42 1.42"/>
+    <path d="M2 12h2"/>
+    <path d="M20 12h2"/>
+    <path d="m4.93 19.07 1.42-1.42"/>
+    <path d="m17.65 6.35 1.42-1.42"/>
+</svg>`;
+
 function append(value) {
     expression += value;
     display.textContent = expression || "0";
 }
 
-// Clear display
 function clearDisplay() {
     expression = "";
     display.textContent = "0";
 }
 
-// Delete last character
 function deleteLast() {
     expression = expression.slice(0, -1);
     display.textContent = expression || "0";
 }
 
-// Calculate
 function calculate() {
     const subscribe = confirm(
         "✨ Calculator Premium\n\n" +
@@ -230,28 +246,27 @@ function calculate() {
     display.textContent = "I MISS YOU BABY";
 }
 
-// Dark / Light Mode
 function toggleTheme() {
     document.body.classList.toggle("light");
 
-    const btn = document.getElementById("themeToggle");
+    const isLight = document.body.classList.contains("light");
 
-    if (document.body.classList.contains("light")) {
-        btn.textContent = "☀️";
-        localStorage.setItem("theme", "light");
-    } else {
-        btn.textContent = "🌙";
-        localStorage.setItem("theme", "dark");
-    }
+    document.getElementById("themeIcon").outerHTML =
+        `<span id="themeIcon">${isLight ? sunIcon : moonIcon}</span>`;
+
+    localStorage.setItem("theme", isLight ? "light" : "dark");
 }
 
-// Load saved theme
 window.addEventListener("load", () => {
     const savedTheme = localStorage.getItem("theme");
 
     if (savedTheme === "light") {
         document.body.classList.add("light");
-        document.getElementById("themeToggle").textContent = "☀️";
+        document.getElementById("themeIcon").outerHTML =
+            `<span id="themeIcon">${sunIcon}</span>`;
     }
 });
 </script>
+
+</body>
+</html>
